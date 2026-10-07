@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 url = "https://sandbox.safaricom.co.ke/oauth/v1/generate"
-key = os.environ["DARAJA_CONSUMER_KEY"]
-secret = os.environ["DARAJA_CONSUMER_SECRET"]
+key = os.getenv("DARAJA_CONSUMER_KEY")
+secret = os.getenv("DARAJA_CONSUMER_SECRET")
 
 def get_access_token() -> str:
     response = requests.get(
