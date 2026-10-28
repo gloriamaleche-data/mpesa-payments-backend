@@ -13,6 +13,7 @@ shortcode = os.getenv("DARAJA_SHORTCODE")
 passkey = os.getenv("DARAJA_PASSKEY")
 timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 phone = os.getenv("DARAJA_TEST_PHONE")
+callback_url = os.getenv("DARAJA_CALLBACK_URL")
 
 raw = shortcode + passkey + timestamp
 
@@ -27,13 +28,17 @@ body = {
     "PartyA":phone,
     "PartyB":shortcode,
     "PhoneNumber":phone,
-    "CallBackURL":"https://example.com/callback",
+    "CallBackURL":callback_url,
     "AccountReference": "INV-0001",
     "TransactionDesc":"Payment INV-0001",
 }
 headers = {"Authorization": f"Bearer {access_token}"}
 
-response = requests.post(url, json=body, headers=headers, timeout=30)
+response = requests.post(url, json=body, headers=headers, timeout=50)
 
+print("URL: ", response.url)
 print("Status Code:", response.status_code)
-print("Reply:", response.text)
+print("Status message:", response.reason)
+print("Headers:", response.headers)
+print("Body:", response.text)
+
