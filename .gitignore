@@ -1,5 +1,6 @@
 .env
 .venv/
 __pycache__/
-callbacks.json1
+raw_callbacks.jsonl
 .idea/
+callback_outcomes.jsonl
